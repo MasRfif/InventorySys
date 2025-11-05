@@ -305,12 +305,12 @@ export default function LoginPage() {
               </div>
 
               <h3 className="text-5xl font-bold leading-tight">
-                Manage Your
+                Atur Segalanya
                 <br />
-                Inventory with
+                Dengan
                 <br />
                 <span className="bg-gradient-to-r from-white to-zinc-300 bg-clip-text text-transparent">
-                  Confidence
+                  Mudah
                 </span>
               </h3>
 

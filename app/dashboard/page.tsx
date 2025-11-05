@@ -1,8 +1,8 @@
-// app/dashboard/page.tsx
 "use client";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 type Transaction = {
   id: string;
@@ -200,20 +200,20 @@ export default function DashboardPage() {
 
   if (!user) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-zinc-50 to-zinc-100 dark:from-zinc-950 dark:to-black">
+      <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-zinc-50 to-zinc-100 dark:from-zinc-950 dark:to-black">
         <div className="text-zinc-600 dark:text-zinc-400">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-zinc-50 via-white to-zinc-100 dark:from-zinc-950 dark:via-black dark:to-zinc-900">
+    <div className="min-h-screen bg-linear-to-br from-zinc-50 via-white to-zinc-100 dark:from-zinc-950 dark:via-black dark:to-zinc-900">
       {/* Header with Gradient */}
       <header className="sticky top-0 z-40 border-b border-zinc-200/50 bg-white/80 backdrop-blur-xl dark:border-zinc-800/50 dark:bg-zinc-900/80">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-20 items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-zinc-900 to-zinc-700 dark:from-white dark:to-zinc-300">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-zinc-900 to-zinc-700 dark:from-white dark:to-zinc-300">
                 <svg
                   className="h-6 w-6 text-white dark:text-zinc-900"
                   fill="none"
@@ -270,14 +270,14 @@ export default function DashboardPage() {
               value: `Rp ${stats.totalBuy.toLocaleString("id-ID")}`,
               suffix: "",
               gradient: "from-blue-500 to-indigo-600",
-              icon: "🛒",
+              icon: "",
             },
             {
               label: "Penjualan",
               value: `Rp ${stats.totalSell.toLocaleString("id-ID")}`,
               suffix: "",
               gradient: "from-purple-500 to-pink-600",
-              icon: "💰",
+              icon: "",
             },
           ].map((stat, idx) => (
             <div
@@ -285,7 +285,7 @@ export default function DashboardPage() {
               className="group relative overflow-hidden rounded-2xl border border-zinc-200/50 bg-white p-6 shadow-sm transition-all hover:shadow-xl dark:border-zinc-800/50 dark:bg-zinc-900"
             >
               <div
-                className={`absolute right-0 top-0 h-32 w-32 translate-x-8 -translate-y-8 rounded-full bg-gradient-to-br ${stat.gradient} opacity-10 blur-2xl transition-all group-hover:scale-150`}
+                className={`absolute right-0 top-0 h-32 w-32 translate-x-8 -translate-y-8 rounded-full bg-linear-to-br ${stat.gradient} opacity-10 blur-2xl transition-all group-hover:scale-150`}
               ></div>
               <div className="relative">
                 <div className="flex items-start justify-between">
@@ -338,11 +338,11 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between">
             <div className="flex space-x-2 overflow-x-auto pb-2">
               {[
-                { key: "overview", label: "Semua Transaksi", icon: "📋" },
-                { key: "in", label: "Barang Masuk", icon: "📥" },
-                { key: "out", label: "Barang Keluar", icon: "📤" },
-                { key: "buy", label: "Pembelian", icon: "🛒" },
-                { key: "sell", label: "Penjualan", icon: "💰" },
+                { key: "overview", label: "Semua Transaksi" },
+                { key: "in", label: "Barang Masuk" },
+                { key: "out", label: "Barang Keluar" },
+                { key: "buy", label: "Pembelian" },
+                { key: "sell", label: "Penjualan" },
               ].map((tab) => (
                 <button
                   key={tab.key}
@@ -355,7 +355,6 @@ export default function DashboardPage() {
                       : "bg-white text-zinc-600 hover:bg-zinc-50 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800"
                   }`}
                 >
-                  <span>{tab.icon}</span>
                   <span>{tab.label}</span>
                 </button>
               ))}
@@ -364,10 +363,10 @@ export default function DashboardPage() {
             {activeTab !== "overview" && (
               <button
                 onClick={() => setShowModal(true)}
-                className="flex items-center space-x-2 whitespace-nowrap rounded-xl bg-gradient-to-r from-zinc-900 to-zinc-700 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:shadow-xl dark:from-white dark:to-zinc-200 dark:text-black"
+                className="flex items-center space-x-2 whitespace-nowrap rounded-xl bg-linear-to-r from-zinc-900 to-zinc-700 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:shadow-xl dark:from-white dark:to-zinc-200 dark:text-black"
               >
                 <span className="text-xl">+</span>
-                <span>Tambah data</span>
+                <span>Tambah Data</span>
               </button>
             )}
           </div>
@@ -424,22 +423,22 @@ export default function DashboardPage() {
                         <span>📦 {transaction.quantity} unit</span>
                         <span>•</span>
                         <span>
-                          💵 Rp {transaction.price.toLocaleString("id-ID")}/unit
+                          Rp {transaction.price.toLocaleString("id-ID")}/unit
                         </span>
                       </div>
                       {transaction.customer && (
                         <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                          👤 {transaction.customer}
+                          {transaction.customer}
                         </p>
                       )}
                       {transaction.supplier && (
                         <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                          🏢 {transaction.supplier}
+                          {transaction.supplier}
                         </p>
                       )}
                       {transaction.notes && (
                         <p className="mt-2 text-sm italic text-zinc-500 dark:text-zinc-500">
-                          📝 {transaction.notes}
+                          {transaction.notes}
                         </p>
                       )}
                     </div>
@@ -471,7 +470,7 @@ export default function DashboardPage() {
                       }}
                       className="flex-1 rounded-lg border border-zinc-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-900 transition-all hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700"
                     >
-                      📱 QR Code
+                      QR Code
                     </button>
 
                     {transaction.type === "sell" && (
@@ -482,7 +481,7 @@ export default function DashboardPage() {
                           }
                           className="flex-1 rounded-lg border border-zinc-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-900 transition-all hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700"
                         >
-                          📄 Invoice
+                          Invoice
                         </button>
                         <button
                           onClick={() =>
@@ -490,7 +489,7 @@ export default function DashboardPage() {
                           }
                           className="flex-1 rounded-lg border border-zinc-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-900 transition-all hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700"
                         >
-                          🚚 Surat Jalan
+                          Surat Jalan
                         </button>
                       </>
                     )}
@@ -502,7 +501,7 @@ export default function DashboardPage() {
                         }
                         className="flex-1 rounded-lg border border-zinc-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-900 transition-all hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700"
                       >
-                        🚚 Surat Jalan
+                        Surat Jalan
                       </button>
                     )}
                   </div>
@@ -519,14 +518,14 @@ export default function DashboardPage() {
           <div className="w-full max-w-md rounded-2xl border border-zinc-200 bg-white p-8 shadow-2xl dark:border-zinc-800 dark:bg-zinc-900">
             <div className="mb-6 flex items-center space-x-3">
               <div
-                className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${getTypeColor(
+                className={`flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br ${getTypeColor(
                   activeTab
                 )} text-2xl text-white shadow-lg`}
               >
-                {activeTab === "in" && "📥"}
-                {activeTab === "out" && "📤"}
-                {activeTab === "buy" && "🛒"}
-                {activeTab === "sell" && "💰"}
+                {activeTab === "in" && ""}
+                {activeTab === "out" && ""}
+                {activeTab === "buy" && ""}
+                {activeTab === "sell" && ""}
               </div>
               <div>
                 <h3 className="text-xl font-bold text-zinc-900 dark:text-white">
@@ -654,7 +653,7 @@ export default function DashboardPage() {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 rounded-xl bg-gradient-to-r from-zinc-900 to-zinc-700 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:shadow-xl dark:from-white dark:to-zinc-200 dark:text-black"
+                  className="flex-1 rounded-xl bg-linear-to-r from-zinc-900 to-zinc-700 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:shadow-xl dark:from-white dark:to-zinc-200 dark:text-black"
                 >
                   Simpan
                 </button>
@@ -673,9 +672,11 @@ export default function DashboardPage() {
             </h3>
 
             <div className="mx-auto mb-6 w-fit rounded-2xl bg-white p-4 shadow-lg">
-              <img
+              <Image
                 src={generateQRCode(selectedTransaction.code)}
                 alt="QR Code"
+                width={100}
+                height={100}
                 className="h-64 w-64"
               />
             </div>
@@ -705,15 +706,15 @@ export default function DashboardPage() {
           <div className="w-full max-w-3xl rounded-2xl border border-zinc-200 bg-white shadow-2xl dark:border-zinc-800 dark:bg-zinc-900">
             <div className="flex items-center justify-between border-b border-zinc-200 p-6 dark:border-zinc-800">
               <h3 className="text-xl font-bold text-zinc-900 dark:text-white">
-                {docType === "invoice" && "📄 Invoice"}
-                {docType === "delivery" && "🚚 Surat Jalan"}
+                {docType === "invoice" && " Invoice"}
+                {docType === "delivery" && " Surat Jalan"}
               </h3>
               <div className="flex space-x-2">
                 <button
                   onClick={printDoc}
                   className="rounded-lg bg-zinc-900 px-4 py-2 text-sm font-semibold text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-100"
                 >
-                  🖨️ Print
+                  Print
                 </button>
                 <button
                   onClick={() => setShowDocModal(false)}
@@ -777,9 +778,11 @@ export default function DashboardPage() {
                       </p>
                     </div>
                     <div className="text-right">
-                      <img
+                      <Image
                         src={generateQRCode(selectedTransaction.code)}
                         alt="QR Code"
+                        width={100}
+                        height={100}
                         className="ml-auto h-24 w-24 rounded-lg border border-zinc-200 dark:border-zinc-700"
                       />
                     </div>
@@ -916,11 +919,13 @@ export default function DashboardPage() {
                       </p>
                     </div>
                     <div className="text-right">
-                      <img
+                      <Image
                         src={generateQRCode(
                           selectedTransaction.deliveryCode ||
                             selectedTransaction.code
                         )}
+                        width={100}
+                        height={100}
                         alt="QR Code"
                         className="h-24 w-24 rounded-lg border border-zinc-200 dark:border-zinc-700"
                       />
@@ -1042,8 +1047,6 @@ export default function DashboardPage() {
                   </div>
                 </div>
               )}
-
-              {/* Exit Note Template - Removed */}
             </div>
           </div>
         </div>

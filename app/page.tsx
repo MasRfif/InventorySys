@@ -29,38 +29,6 @@ export default function Home() {
             Create Account
           </Link>
         </div>
-
-        <div className="mt-6">
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-zinc-300 dark:border-zinc-700" />
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-zinc-50 px-2 text-zinc-500 dark:bg-black dark:text-zinc-400">
-                Features
-              </span>
-            </div>
-          </div>
-
-          <div className="mt-6 grid gap-4 text-center">
-            <div className="rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
-              <h3 className="font-semibold text-zinc-900 dark:text-white">
-                Secure Authentication
-              </h3>
-              <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">
-                Protected routes and session management
-              </p>
-            </div>
-            <div className="rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
-              <h3 className="font-semibold text-zinc-900 dark:text-white">
-                Modern UI
-              </h3>
-              <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">
-                Clean and responsive design
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
